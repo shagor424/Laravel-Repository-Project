@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Category\Providers\CategoryServiceProvider;
+use App\Http\Controllers\frontend\auth\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,21 @@ use Modules\Category\Providers\CategoryServiceProvider;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [AuthController::class,'login_page'])->name('login.page');
+Route::post('/login', [AuthController::class,'login'])->name('login');
+Route::get('/register-page', [AuthController::class,'register_page'])->name('register.page');
+Route::post('/register', [AuthController::class,'register'])->name('register');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
