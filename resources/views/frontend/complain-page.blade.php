@@ -9,7 +9,7 @@
     <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Login Page - Frest - Bootstrap HTML admin template</title>
+    <title>Register Page - Frest - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="{{asset('backend')}}/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('backend')}}/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
@@ -49,80 +49,75 @@
             <div class="content-header row">
             </div>
             <div class="content-body">
-                <!-- login page start -->
-                <section id="auth-login" class="row flexbox-container">
-                    <div class="col-xl-8 col-11">
+                <!-- register section starts -->
+                <section class="row flexbox-container">
+                    <div class="col-xl-8 col-10">
                         <div class="card bg-authentication mb-0">
                             <div class="row m-0">
-                                <!-- left section-login -->
+                                <!-- register section left -->
                                 <div class="col-md-6 col-12 px-0">
                                     <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
                                         <div class="card-header pb-1">
                                             <div class="card-title">
-                                                <h4 class="text-center mb-2">Welcome Back</h4>
+                                                <h4 class="text-center mb-2">Create Complain</h4>
                                             </div>
+                                             @if ($message = Session::get('success'))
+                                              <div class="alert alert-success alert-block">
+                                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                                <strong class="text-white" style="color:white">{{ $message }}</strong>
+                                              </div>
+                                              @endif
+                                              @if ($message = Session::get('error'))
+                                              <div class="alert alert-danger alert-block">
+                                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                                <strong class="text-white" style="color:white">{{ $message }}</strong>
+                                              </div>
+                                              @endif
+                                        </div>
+                                        <div class="text-center">
+                                            <p> <small> Please enter your details to create complain and be part of our great community</small>
+                                            </p>
                                         </div>
                                         <div class="card-content">
                                             <div class="card-body">
-                                                <div class="d-flex flex-md-row flex-column justify-content-around">
-                                                    <a href="#" class="btn btn-social btn-google btn-block font-small-3 mr-md-1 mb-md-0 mb-1">
-                                                        <i class="bx bxl-google font-medium-3"></i><span class="pl-50 d-block text-center">Google</span></a>
-                                                    <a href="#" class="btn btn-social btn-block mt-0 btn-facebook font-small-3">
-                                                        <i class="bx bxl-facebook-square font-medium-3"></i><span class="pl-50 d-block text-center">Facebook</span></a>
-                                                </div>
-                                                <div class="divider">
-                                                    <div class="divider-text text-uppercase text-muted"><small>or login with
-                                                            email</small>
+                                                <form action="{{route('create.complain')}}" method="POST">
+                                                    @csrf
+                                                    <div class="form-row">
+                                                        
+                                                        <div class="form-group col-md-12 mb-50">
+                                                            <label for="inputlastname4">Name</label>
+                                                            <input type="text" name="name" class="form-control" id="inputlastname4" value="{{old('name')}}" placeholder="Name" old>
+                                                        </div>
                                                     </div>
-                                                </div>
-    
-    
-
-        <x-jet-validation-errors class="mb-4" />
-
-       
-                                                <form action="{{route('login')}}" method="POST">
-                                                     @csrf
+                                                    
                                                     <div class="form-group mb-50">
                                                         <label class="text-bold-600" for="exampleInputEmail1">Email address</label>
-                                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email address"></div>
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600" for="exampleInputPassword1">Password</label>
-                                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="{{old('email')}}" placeholder="Email address"></div>
+                                                    <div class="form-group mb-50">
+                                                        <label class="text-bold-600" for="exampleInputphone1">phone</label>
+                                                        <input type="text" class="form-control" id="exampleInputphone1" value="{{old('phone')}}" name="phone" placeholder="phone">
                                                     </div>
-                                                    <div class="form-group d-flex flex-md-row flex-column justify-content-between align-items-center">
-                                                        <div class="text-left">
-                                                            <div class="checkbox checkbox-sm">
-                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                                <label class="checkboxsmall" for="exampleCheck1"><small>Keep me logged
-                                                                        in</small></label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-right"><a href="auth-forgot-password.html" class="card-link"><small>Forgot Password?</small></a></div>
+                                                    <div class="form-group mb-50">
+                                                        <label class="text-bold-600" for="exampleInputphone1">Complain Description</label>
+                                                        <textarea type="text" class="form-control" id="exampleInputcomplaint_description1" name="complaint_description" value="{{old('name')}}" placeholder="Complain Description" rows="4">{{old('complaint_description')}}</textarea>
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary glow w-100 position-relative">Login<i id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
+                                                    <button type="submit" class="btn btn-primary glow position-relative w-100">Create Complain<i id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
                                                 </form>
- 
-
-
                                                 <hr>
-                                               <div class="text-center"><small class="mr-25"> Dont'have an account?</small><a href="{{route('register.page')}}"><small>Sign Up</small></a></div>
+                                                <div class="text-center"><small class="mr-25"></small><a href="{{route('login.page')}}"><small>Home Page</small> </a></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- right section image -->
+                                <!-- image section right -->
                                 <div class="col-md-6 d-md-block d-none text-center align-self-center p-3">
-                                    <div class="card-content">
-                                        <img class="img-fluid" src="{{asset('backend')}}/app-assets/images/pages/login.png" alt="branding logo">
-                                    </div>
+                                    <img class="img-fluid" src="{{asset('backend')}}/app-assets/images/pages/register.png" alt="branding logo">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <!-- login page ends -->
-
+                <!-- register section endss -->
             </div>
         </div>
     </div>

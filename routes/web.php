@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\frontend\auth\AuthController;
+use App\Http\Controllers\frontend\auth\FrontendController;
+use App\Http\Livewire\Backend\AdminDashboardComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,17 +18,27 @@ use App\Http\Controllers\frontend\auth\AuthController;
 //     return view('welcome');
 // });
 
-Route::get('/', [AuthController::class,'login_page'])->name('login.page');
-Route::post('/login', [AuthController::class,'login'])->name('login');
-Route::get('/register-page', [AuthController::class,'register_page'])->name('register.page');
-Route::post('/register', [AuthController::class,'register'])->name('register');
+Route::get('/', [FrontendController::class,'login_page'])->name('login.page');
+Route::get('/register-page', [FrontendController::class,'register_page'])->name('register.page');
+Route::get('/complain-page', [FrontendController::class,'complain_page'])->name('complain.page');
+Route::post('/create-complain', [FrontendController::class,'create_complain'])->name('create.complain');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified'
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
+
+
+Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
+    Route::get('/main/dashboard',AdminDashboardComponent::class)->name('main.dashboard');
+    // Route::get('/user-list',UserListComponent::class)->name('admin.user.list');
+    // Route::get('/update-user/{id}',UserUpdateComponent::class)->name('admin.user.update');
+
+    // Route::get('/change-password',AdminChangePasswordComponent::class)->name('admin.change.password');
+    // Route::get('/profile/',AdminProfileComponent::class)->name('admin.profile');
 });

@@ -23,7 +23,7 @@ class CreateComplaintsTable extends Migration
             $table->text('resolution_description');
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('customer_id')->references('customer_id')->on('customers')->onDelete('cascade');
             $table->foreign('assigned_to')->references('id')->on('support_teams')->onDelete('cascade');
         });
     }

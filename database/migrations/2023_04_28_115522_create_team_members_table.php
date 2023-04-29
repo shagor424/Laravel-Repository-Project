@@ -19,9 +19,11 @@ class CreateTeamMembersTable extends Migration
             $table->string('team_member_email')->unique();
             $table->string('team_member_phone')->unique();
             $table->text('team_member_job_description')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('support_team_id');
             $table->softDeletes();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('support_team_id')->references('id')->on('support_teams')->onDelete('cascade');
         });
     }

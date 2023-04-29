@@ -14,7 +14,7 @@
         @livewireStyles
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+       
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -40,5 +40,6 @@
         @stack('modals')
 
         @livewireScripts
+         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </body>
 </html>

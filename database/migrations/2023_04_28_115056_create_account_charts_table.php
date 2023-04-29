@@ -8,7 +8,9 @@ class CreateAccountChartsTable extends Migration
 {
     /**
      * Run the migrations.
-     *php artisan migrate --path=database/migrations/2023_04_28_115056_create_account_charts_table.php
+     *php artisan migrate --path=database/migrations/2023_04_28_115522_create_team_members_table.php
+
+     php artisan migrate:rollback --path=database/migrations/2023_04_28_115522_create_team_members_table.php
      * @return void
      */
     public function up()
