@@ -33,6 +33,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('backend')}}/app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="{{asset('backend')}}/app-assets/vendors/css/charts/apexcharts.css">
     <link rel="stylesheet" type="text/css" href="{{asset('backend')}}/app-assets/vendors/css/extensions/dragula.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('backend')}}/app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('backend')}}/app-assets/vendors/css/tables/datatable/datatables.min.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -71,7 +73,7 @@
     <!-- END: Main Menu-->
 
     <!-- BEGIN: Content-->
-    {{ $slot }}
+   @yield('content')
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
@@ -87,7 +89,14 @@
     <script src="{{asset('backend')}}/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
     <script src="{{asset('backend')}}/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js"></script>
     <!-- BEGIN Vendor JS-->
-
+    <script src="{{asset('backend')}}/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+    <script src="{{asset('backend')}}/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="{{asset('backend')}}/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js"></script>
+    <script src="{{asset('backend')}}/app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
+    <script src="{{asset('backend')}}/app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
+    <script src="{{asset('backend')}}/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
+    <script src="{{asset('backend')}}/app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
+    <script src="{{asset('backend')}}/app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('backend')}}/app-assets/vendors/js/charts/apexcharts.min.js"></script>
     <script src="{{asset('backend')}}/app-assets/vendors/js/extensions/dragula.min.js"></script>
@@ -102,6 +111,7 @@
 
     <!-- BEGIN: Page JS-->
     <script src="{{asset('backend')}}/app-assets/js/scripts/pages/dashboard-analytics.js"></script>
+    <script src="{{asset('backend')}}/app-assets/js/scripts/datatables/datatable.js"></script>
     <!-- END: Page JS-->
 
 

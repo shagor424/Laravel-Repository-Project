@@ -18,12 +18,12 @@ class CreateComplaintsTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->date('complaint_date');
             $table->text('complaint_description');
-            $table->unsignedBigInteger('assigned_to');
-            $table->date('resolved_date');
-            $table->text('resolution_description');
+            $table->unsignedBigInteger('assigned_to')->nullable();
+            $table->date('resolved_date')->nullable();
+            $table->text('resolution_description')->nullable();
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('customer_id')->references('customer_id')->on('customers')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('assigned_to')->references('id')->on('support_teams')->onDelete('cascade');
         });
     }

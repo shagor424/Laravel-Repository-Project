@@ -1,3 +1,7 @@
+@extends('backend.layouts.master')
+
+@section('content')
+
 <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="content-wrapper">
@@ -632,3 +636,5 @@
         <!-- widget chat demo ends -->
 
     </div>
+
+    @endsection
